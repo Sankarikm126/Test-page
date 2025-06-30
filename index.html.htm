@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Q&A: Ions & Electrons</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        h1, h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+        }
+
+        /* Q&A Item Styling */
+        .qa-item {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .question {
+            background-color: #e9ecef;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            position: relative;
+            user-select: none; /* Prevents text selection on click */
+        }
+        
+        .question:hover {
+            background-color: #d8dde2;
+        }
+
+        /* Arrow Icon */
+        .question::after {
+            content: '▼';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%) rotate(0deg);
+            transition: transform 0.3s ease;
+            color: #0056b3;
+        }
+        
+        .qa-item.active .question::after {
+            transform: translateY(-50%) rotate(-180deg);
+        }
+
+        /* Answer Styling */
+        .answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            background-color: #fdfdfd;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+        
+        .answer p {
+            margin: 15px 0;
+        }
+
+        /* Active State */
+        .qa-item.active {
+            border-color: #007bff;
+        }
+        
+        .qa-item.active .answer {
+            max-height: 500px; /* Adjust if answers are very long */
+            padding: 10px 20px;
+        }
+
+        /* Styling for lists and bold text inside answers */
+        .answer ul {
+            padding-left: 20px;
+            list-style-type: '• ';
+        }
+
+        .answer strong {
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>⚛️ Ions & Electrons: Interactive Summary</h1>
+
+    <h2>Part 1: Ionisation Energy (IE)</h2>
+    <div class="qa-item">
+        <div class="question">What is First Ionisation Energy (IE₁)?</div>
+        <div class="answer">
+            <p>It is the energy required to remove <strong>one mole of electrons</strong> from <strong>one mole of gaseous atoms</strong> to form one mole of gaseous 1+ ions.</p>
+        </div>
+    </div>
+    <div class="qa-item">
+        <div class="question">Why do successive IEs always increase?</div>
+        <div class="answer">
+            <p>Because each electron is being removed from an ion with an increasingly <strong>positive charge</strong>. This stronger electrostatic attraction makes it harder to remove the next electron.</p>
+        </div>
+    </div>
+    <div class="qa-item">
+        <div class="question">What is the trend in IE across a period and why?</div>
+        <div class="answer">
+            <p>It generally <strong>increases</strong>. This is because the nuclear charge increases, while shielding remains relatively constant, pulling the outer electrons more strongly.</p>
+        </div>
+    </div>
+    <div class="qa-item">
+        <div class="question">What are the two "dips" in the trend across a period?</div>
+        <div class="answer">
+            <ul>
+                <li><strong>Group 2 to 3:</strong> A slight decrease occurs because the electron is removed from a higher-energy p-subshell.</li>
+                <li><strong>Group 5 to 6:</strong> A slight decrease occurs due to <strong>spin-pair repulsion</strong>, making it easier to remove one of the paired electrons.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="qa-item">
+        <div class="question">What is the trend in IE down a group and why?</div>
+        <div class="answer">
+            <p>It <strong>decreases</strong>. This is because the effect of increased <strong>electron shielding</strong> and a larger atomic radius outweighs the increase in nuclear charge, so the outer electron is held less tightly.</p>
+        </div>
+    </div>
+
+    <h2>Part 2: Quantum Shells & Orbitals</h2>
+    <div class="qa-item">
+        <div class="question">What is an Atomic Orbital?</div>
+        <div class="answer">
+            <p>It is a region within a subshell with a high probability of finding an electron. Each orbital can hold a maximum of <strong>two electrons</strong>.</p>
+        </div>
+    </div>
+    <div class="qa-item">
+        <div class="question">What are the shapes and capacities of s and p orbitals?</div>
+        <div class="answer">
+            <ul>
+                <li><strong>s-orbital:</strong> Spherical shape. Holds a maximum of 2 electrons.</li>
+                <li><strong>p-orbitals:</strong> Dumbbell shape. Three orbitals per subshell, holding a maximum of 6 electrons.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>Part 3: Electronic Configurations</h2>
+    <div class="qa-item">
+        <div class="question">What are the three main rules for filling orbitals?</div>
+        <div class="answer">
+            <ol>
+                <li><strong>Aufbau Principle:</strong> Fill lowest energy orbitals first (1s, 2s, 2p, 3s, 3p, <strong>4s, 3d...</strong>).</li>
+                <li><strong>Hund's Rule:</strong> Place electrons singly in orbitals before pairing them up.</li>
+                <li><strong>Pauli Exclusion Principle:</strong> Two electrons in the same orbital must have opposite spins.</li>
+            </ol>
+        </div>
+    </div>
+    <div class="qa-item">
+        <div class="question">How are ion configurations determined?</div>
+        <div class="answer">
+            <ul>
+                <li><strong>Anions (negative):</strong> Add electrons to the next available orbital.</li>
+                <li><strong>Cations (positive):</strong> Remove electrons from the orbital with the <strong>highest principal quantum number</strong> first. For transition metals, this means removing from the <strong>4s orbital before the 3d</strong>.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="qa-item">
+        <div class="question">What are the exceptions for Cr and Cu?</div>
+        <div class="answer">
+            <p>They promote a 4s electron to the 3d subshell to achieve a more stable half-filled or full d-subshell.</p>
+            <ul>
+                <li><strong>Cr:</strong> [Ar] 3d⁵ 4s¹</li>
+                <li><strong>Cu:</strong> [Ar] 3d¹⁰ 4s¹</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const qaItems = document.querySelectorAll('.qa-item');
+
+        qaItems.forEach(item => {
+            const question = item.querySelector('.question');
+            question.addEventListener('click', () => {
+                // Close all other items
+                qaItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                // Toggle the clicked item
+                item.classList.toggle('active');
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
