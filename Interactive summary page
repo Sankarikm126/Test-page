@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Mind Map: Atomic Structure (Summary)</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: auto;
+        }
+
+        /* Mind Map Container */
+        .mind-map {
+            list-style: none;
+            padding: 0;
+            position: relative;
+            text-align: center;
+        }
+
+        .mind-map ul {
+            list-style: none;
+            padding-top: 20px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Allows nodes to wrap if needed */
+        }
+
+        /* Node Styling */
+        .mind-map li {
+            padding: 0 5px 20px 5px;
+            position: relative;
+            flex-shrink: 0;
+        }
+        
+        .mind-map .node {
+            display: inline-block;
+            padding: 12px 20px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            min-width: 160px;
+            transition: all 0.3s ease;
+            text-align: left; /* Better for list-like content */
+        }
+
+        .mind-map .node strong {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #495057;
+        }
+
+        /* Root Node Styling */
+        .mind-map > li > .node {
+            background-color: #007bff;
+            color: white;
+            border-color: #0056b3;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Child Node Styling */
+        .mind-map ul li .node {
+            background-color: #e9ecef;
+            border-color: #adb5bd;
+        }
+        
+        .mind-map ul ul li .node {
+            background-color: #f8f9fa;
+        }
+
+        /* Interactive Parent Node Styling */
+        .mind-map .parent-node > .node {
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .mind-map .parent-node > .node:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Expander/Collapser Icon (+/-) */
+        .mind-map .parent-node > .node::before {
+            content: '-';
+            position: absolute;
+            top: 50%;
+            left: -20px;
+            transform: translateY(-50%);
+            background-color: #6c757d;
+            color: white;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 16px;
+            font-weight: bold;
+        }
+
+        .mind-map .collapsed > .node::before {
+            content: '+';
+            background-color: #28a745;
+        }
+
+        /* Hiding Collapsed Nodes */
+        .mind-map .collapsed > ul {
+            display: none;
+        }
+
+        /* Connecting Lines */
+        .mind-map li::before, .mind-map li::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            border-color: #adb5bd;
+            border-style: solid;
+            border-width: 0 0 2px 0;
+            z-index: -1;
+        }
+        
+        .mind-map li::before { /* Vertical line from parent */
+            top: 0;
+            height: 20px;
+            width: 0;
+            border-left-width: 2px;
+        }
+
+        .mind-map > li::before {
+             border: none; /* No line above root */
+        }
+        
+        .mind-map ul li::after { /* Horizontal line to node */
+            top: -22px;
+            height: 0;
+            width: 50%;
+            border-bottom-width: 2px;
+        }
+
+        .mind-map li:first-child::after {
+            left: 50%;
+            border-radius: 5px 0 0 0;
+        }
+
+        .mind-map li:last-child::after {
+            left: 0;
+            width: 50%;
+            border-radius: 0 5px 0 0;
+        }
+
+        .mind-map li:first-child:last-child::after { /* Single child */
+            width: 0;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<ul class="mind-map">
+    <li class="parent-node">
+        <div class="node">⚛️ Atomic Structure</div>
+        <ul>
+            <li class="parent-node">
+                <div class="node"><strong>1. Structure of the Atom</strong></div>
+                <ul>
+                    <li><div class="node"><strong>Concept:</strong> Positive nucleus (protons & neutrons) with orbiting electrons.</div></li>
+                    <li><div class="node"><strong>Particles:</strong><br>• Proton (+1)<br>• Neutron (0)<br>• Electron (-1)</div></li>
+                    <li><div class="node"><strong>Key Numbers:</strong><br>• Atomic No. (Z) = #protons<br>• Mass No. (A) = #protons + #neutrons</div></li>
+                </ul>
+            </li>
+            <li class="parent-node">
+                <div class="node"><strong>2. Isotopes & Ions</strong></div>
+                <ul>
+                    <li><div class="node"><strong>Isotopes:</strong> Same protons, different neutrons. Same chemical, different physical properties.</div></li>
+                    <li><div class="node"><strong>Ions:</strong> Gained/lost electrons. Cations (+) or Anions (-).</div></li>
+                </ul>
+            </li>
+            <li class="parent-node">
+                <div class="node"><strong>⚖️ 3. Relative Mass</strong></div>
+                <ul>
+                    <li><div class="node"><strong>Standard:</strong> Carbon-12 is exactly 12.</div></li>
+                    <li><div class="node"><strong>Ar:</strong> Weighted mean mass of isotopes.</div></li>
+                    <li><div class="node"><strong>Mr:</strong> Sum of Ar in a formula.</div></li>
+                </ul>
+            </li>
+            <li class="parent-node">
+                <div class="node"><strong>🔬 4. Mass Spectrometry</strong></div>
+                <ul>
+                    <li><div class="node"><strong>Use:</strong> Finds mass & abundance of isotopes to determine Mr.</div></li>
+                    <li class="parent-node">
+                        <div class="node"><strong>Interpreting Spectra</strong></div>
+                        <ul>
+                            <li><div class="node"><strong>M⁺ Peak:</strong> Highest m/z, gives Mr.</div></li>
+                            <li><div class="node"><strong>[M+1] Peak:</strong> Due to ¹³C.</div></li>
+                            <li><div class="node"><strong>Halogen Patterns:</strong><br>• Chlorine (¹Cl) = 3:1 (M⁺:[M+2])<br>• Bromine (¹Br) = 1:1 (M⁺:[M+2])</div></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const parentNodes = document.querySelectorAll('.mind-map .parent-node');
+        parentNodes.forEach(node => {
+            const clickableNode = node.querySelector('.node');
+            clickableNode.addEventListener('click', function (event) {
+                event.stopPropagation();
+                node.classList.toggle('collapsed');
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
